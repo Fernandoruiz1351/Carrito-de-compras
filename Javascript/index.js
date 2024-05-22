@@ -1,10 +1,11 @@
-const precioRaqueta = 800;
-const precioPelota = 500;
-const precioGrip = 100;
-const interes3=5
-const interes6=7
-const interes9=9
-const interes12=11
+let precio = {
+    Raqueta:800,
+    Pelota:500,
+    Grip:100
+}
+
+let interes =[5,7,9,11]
+
 let total = 0;
 const productos = parseInt(prompt('Ingrese la cantidad de productos a comprar:'));
 
@@ -20,13 +21,13 @@ function calcularCompra() {
         let precioItem;
 
         if (producto === "raqueta") {
-            precioItem = precioRaqueta;
+            precioItem = precio.Raqueta;
         } 
         else if (producto === "pelota") {
-            precioItem = precioPelota;
+            precioItem = precio.Pelota;
         } 
         else {
-            precioItem = precioGrip;
+            precioItem = precio.Grip;
         }
 
         total += precioItem;
@@ -36,26 +37,26 @@ function calcularCompra() {
 
     const cuotas = parseInt(prompt('Puede pagar en 3,6,9 o 12 cuotas¿En cuántas cuotas desea pagar?'));
     if (cuotas===3){
-        console.log(`la taza de interes para ${cuotas} cuotas es ${interes3}%.`);  
-        const totalInteres = total * (1+(interes3/100));
+        console.log(`la taza de interes para ${cuotas} cuotas es ${interes[0]}%.`);  
+        const totalInteres = total * (1+(interes[0]/100));
         const valorCuota= round(totalInteres/cuotas,2)
         console.log(`El total a pagar con interes es $${totalInteres} en ${cuotas} cuotas de $${valorCuota}`)
     }
     else if (cuotas===6){
-        console.log(`la taza de interes para ${cuotas} cuotas es ${interes6}%.`);  
-        const totalInteres = total * (1+(interes6/100));
+        console.log(`la taza de interes para ${cuotas} cuotas es ${interes[1]}%.`);  
+        const totalInteres = total * (1+(interes[1]/100));
         const valorCuota= round(totalInteres/cuotas,2)
         console.log(`El total a pagar con interes es $${totalInteres} en ${cuotas} cuotas de $${valorCuota}`)
     }
     else if (cuotas===9){
-        console.log(`la taza de interes para ${cuotas} cuotas es ${interes9}%.`);  
-        const totalInteres = total * (1+(interes9/100));
+        console.log(`la taza de interes para ${cuotas} cuotas es ${interes[2]}%.`);  
+        const totalInteres = total * (1+(interes[2]/100));
         const valorCuota= round(totalInteres/cuotas,2)
         console.log(`El total a pagar con interes es $${totalInteres} en ${cuotas} cuotas de $${valorCuota}`)
     }
     else{
-        console.log(`la taza de interes para ${cuotas} cuotas es ${interes12}%.`);  
-        const totalInteres = total * (1+(interes12/100));
+        console.log(`la taza de interes para ${cuotas} cuotas es ${interes[3]}%.`);  
+        const totalInteres = total * (1+(interes[3]/100));
         const valorCuota= round(totalInteres/cuotas,2)
         console.log(`El total a pagar con interes es $${totalInteres} en ${cuotas} cuotas de $${valorCuota}`)
     }

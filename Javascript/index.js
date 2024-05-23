@@ -95,36 +95,76 @@ let interes={
 }
 
 let total = 0;
+let carrito=[];
 
 function carritoCompra(){
+    console.log("**********BIENVENIDO A NUESTRA TIENDA VIRTUAL**********")
 
     while(true){
 
-        const producto = prompt('Bienvenido estimado cliente. Seleccione el producto deseado(Raqueta,Pelota o Grip)').toLowerCase();
+        console.log("**Si desea agregar un producto al carrito ingrese A**")
+        console.log("**Si desea ver el carrito de compras ingrese B**")
+        console.log("**Si desea eliminar un producto del carrito ingrese C**")
+        console.log("**Si desea finalizar la compra ingrese D**")
 
-        console.log(`En este momento disponemos de las/los siguentes ${producto}s:`)
-        for(let i in items){
-            if(producto === items[i].categoria)   
-                console.log(`${i}:${items[i].marca} color ${items[i].color}. Valor $${items[i].precio}`)
+        let selector = prompt('Ingrese la opcion desada').toLowerCase();
+
+        if (selector === "a"){
+
+        console.log("*****PRODUCTOS DISPONIBLE*****")
+        for(let i in items){   
+            console.log(`${i}:${items[i].marca} color ${items[i].color}. Valor $${items[i].precio}`)
         }
 
         const prod= parseInt(prompt('Seleccione el producto deseado en base a su numero:'));
         console.log(`Usted a seleccionado ${items[prod].marca} color ${items[prod].color}. Valor $${items[prod].precio} `)
         total += items[prod].precio;
+        carrito.push(items[prod])
+        }
 
-    const addItem= prompt('Si desea agregar otro item ingrese "Si", caso contrario ingrese "No"').toLowerCase();
-    if(addItem != "si"){
+        else if(selector ==="b"){
+            console.log("*****CARRITO DE COMPRAS*****")
+            for(let c in carrito){
+                console.log(`${Number(c)+1} - ${carrito[c].marca} color ${carrito[c].color}. Valor $${carrito[c].precio}`)
+            }
+            console.log(`Total parcial $${total}`)
+        }
+
+        else if(selector === "c"){
+            for(let c in carrito){
+                console.log(`${Number(c)+1} - ${carrito[c].marca} color ${carrito[c].color}. Valor $${carrito[c].precio}`)
+            }
+            const elim = parseInt(prompt('Ingrese el numero del producto a eliminar:'))-1;
+            carrito.splice(elim,1)
+            console.log("*****CARRITO DE COMPRAS ACTUALIZADO*****")
+            for(let c in carrito){
+                console.log(`${Number(c)+1} - ${carrito[c].marca} color ${carrito[c].color}. Valor $${carrito[c].precio}`)
+            }
+        }
+
+        else if(selector === "d"){
             break
         }
+        
     }
 
-    console.log(`El valor total de su compra es de ${total} pagando en efectivo.`)
+    console.log(`El valor total de su compra es de $${total} pagando en efectivo.`)
+    console.log("**Si desea pagar en efectivo ingrese E**")
+    console.log("**Si desea pagar en cuotas ingrese F**")
+    const pago= prompt('Seleccione la forma de pago:').toLocaleLowerCase();
+    if (pago === "e"){
+        console.log(`El valor total de su compra es de $${total}.`)
+        console.log("Gracias por su compra")
+    }
+    else{
+
     const cuotas = parseInt(prompt('Puede pagar en 3,6,9 o 12 cuotas¿En cuántas cuotas desea pagar?'));
     console.log(`la tasa de interes en ${cuotas} cuotas es de ${interes[cuotas]}%`)
-    const totalInteres = round(total * (1+(interes[cuotas]/100),2));
+    const totalInteres = round(total * (1+(interes[cuotas]/100)),2);
     const valorCuota= round(totalInteres/cuotas,2)
     console.log(`El total a pagar con interes es $${totalInteres} en ${cuotas} cuotas de $${valorCuota}`)
     console.log("Gracias por su compra")
+    }
 }
 
 carritoCompra();
